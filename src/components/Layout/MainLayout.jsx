@@ -2,6 +2,8 @@ import Head from 'next/head'
 
 import { Box, Container } from '@chakra-ui/react'
 
+import Navbar from '../Navbar'
+
 export default function MainLayout ({ children, router }) {
   return (
     <Box
@@ -21,9 +23,13 @@ export default function MainLayout ({ children, router }) {
         <title>Jerson Silva Arjona · Inicio</title>
       </Head>
 
+      <Navbar
+        path={router.asPath}
+      />
+
       <Container
-        maxw='container.md'
         pt={14}
+        maxw='container.md'
       >
         {children}
       </Container>
