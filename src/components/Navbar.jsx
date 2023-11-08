@@ -1,109 +1,143 @@
 import NextLink from 'next/link'
+import { forwardRef } from 'react'
+
+import Logo from './Logo'
 
 import {
+  Container,
   Box,
   Link,
-  Flex,
-  Menu,
   Stack,
   Heading,
-  MenuList,
+  Flex,
+  Menu,
   MenuItem,
-  Container,
-  IconButton,
+  MenuList,
   MenuButton,
+  IconButton,
   useColorModeValue
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 
-import Logo from './Logo'
+import ThemeToggleButton from './theme-toggle-button'
 
-export const LinkItem = ({ href, path, children }) => {
+import { IoLogoGithub } from 'react-icons/io5'
+
+const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
-  const inactiveColor = useColorModeValue('gray.200', 'whiteAlpha.900')
-
+  const inactiveColor = useColorModeValue('gray.800', 'whiteAlpha.900')
   return (
-    <NextLink href={href}>
-      <Link
-        p={2}
-        bg={active ? 'glassTeal' : undefined}
-        color={active ? '#202023' : inactiveColor}
-      >
-        {children}
-      </Link>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={href}
+      scroll={false}
+      p={2}
+      bg={active ? 'grassTeal' : undefined}
+      color={active ? '#202023' : inactiveColor}
+      target={target}
+      {...props}
+    >
+      {children}
+    </Link>
   )
 }
 
-const Navbar = props => {
+const MenuLink = forwardRef((props, ref) => (
+  <Link ref={ref} as={NextLink} {...props} />
+))
+
+export default function Navbar (props) {
   const { path } = props
+
   return (
     <Box
-      w='100%'
-      as='nav'
-      bg={useColorModeValue('#ffffff40', '#20202380')}
-      style={{
-        backdropFilter: 'blur(10px)'
-      }}
-      zIndex={1}
       position='fixed'
+      as='nav'
+      w='100%'
+      bg={useColorModeValue('#ffffff40', '#20202380')}
+      css={{ backdropFilter: 'blur(10px)' }}
+      zIndex={2}
       {...props}
     >
       <Container
-        p={2}
-        wrap='wrap'
-        maxW='container.md'
         display='flex'
+        p={2}
+        maxW='container.md'
+        wrap='wrap'
         align='center'
-        justifyContent='space-between'
+        justify='space-between'
       >
-        <Flex
-          mr={5}
-          align='center'
-        >
-          <Heading
-            as='h1'
-            size='lg'
-            letterSpacing='tighter'
-          >
+        <Flex align='center' mr={5}>
+          <Heading as='h1' size='lg' letterSpacing='tighter'>
             <Logo />
           </Heading>
         </Flex>
+
         <Stack
-          direction={{
-            base: 'column',
-            md: 'row'
-          }}
-          display={{
-            base: 'none',
-            md: 'flex'
-          }}
-          width={{
-            base: 'full',
-            md: 'auto'
-          }}
+          direction={{ base: 'column', md: 'row' }}
+          display={{ base: 'none', md: 'flex' }}
+          width={{ base: 'full', md: 'auto' }}
           alignItems='center'
-          mt={{
-            base: 4,
-            md: 0
-          }}
+          flexGrow={1}
+          mt={{ base: 4, md: 0 }}
         >
-          <LinkItem
-            href='/proyectos'
-            path={path}
-          >
+          <LinkItem href='/proyectos' path={path}>
             Proyectos
           </LinkItem>
-          <LinkItem
-            href='/recursos'
-            path={path}
-          >
+          <LinkItem href='/recursos' path={path}>
             Recursos
           </LinkItem>
+          <LinkItem
+            target='_blank'
+            href='https://github.com/daviardev'
+            path={path}
+            display='inline-flex'
+            alignItems='center'
+            style={{ gap: 4 }}
+            pl={2}
+          >
+            <IoLogoGithub />
+            Mi perfil
+          </LinkItem>
         </Stack>
+
+        <Box flex={1} align='right'>
+          <ThemeToggleButton />
+
+          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
+            <Menu isLazy id='navbar-menu'>
+              <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon />}
+                variant='outline'
+                aria-label='Options'
+              />
+              <MenuList>
+                <MenuItem as={MenuLink} href='/'>
+                  Inicio
+                </MenuItem>
+                <MenuItem as={MenuLink} href='/works'>
+                  Proyectos
+                </MenuItem>
+                <MenuItem as={MenuLink} href='/posts'>
+                  Recursos
+                </MenuItem>
+                <MenuItem
+                  as={Link}
+                  href='https://github.com/daviardev'
+                  display='inline-flex'
+                  alignItems='center'
+                  style={{ gap: 4 }}
+                  pl={2}
+                >
+                  <IoLogoGithub />
+                  Mi perfil
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
+        </Box>
       </Container>
     </Box>
   )
 }
-
-export default Navbar

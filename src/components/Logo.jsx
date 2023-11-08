@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
+
+import Dev from '../assets/images/icons8-desarrollador-60.png'
 
 import { Text, useColorModeValue } from '@chakra-ui/react'
 
@@ -24,13 +25,12 @@ const LogoBox = styled.span`
 `
 
 export default function Logo () {
-  const logo = `../assets/images/logo${useColorModeValue('', '-dark')}.svg`
   return (
     <>
       <Link href='/'>
         <LogoBox>
-          <Image
-            src={logo}
+          <img
+            src='../assets/images/icons8-desarrollador-60.png'
             alt=''
             width={20}
             height={20}
