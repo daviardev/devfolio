@@ -1,10 +1,9 @@
 import Link from 'next/link'
 
-import Dev from '../assets/images/icons8-desarrollador-60.png'
-
 import { Text, useColorModeValue } from '@chakra-ui/react'
 
 import styled from '@emotion/styled'
+import Dev from './Icons/Dev'
 
 const LogoBox = styled.span`
     font-weight: bold;
@@ -15,11 +14,11 @@ const LogoBox = styled.span`
     line-height: 20px;
     padding: 10px;
 
-    & > img {
+    & > svg {
         transition: transform 200ms ease;
     }
 
-    &:hover img {
+    &:hover svg {
         transform: rotate(20deg);
     }
 `
@@ -29,12 +28,7 @@ export default function Logo () {
     <>
       <Link href='/'>
         <LogoBox>
-          <img
-            src='../assets/images/icons8-desarrollador-60.png'
-            alt=''
-            width={20}
-            height={20}
-          />
+          <Dev />
           <Text
             color={useColorModeValue('gray.800', 'whiteAlpha.900')}
             fontWeight='bold'
