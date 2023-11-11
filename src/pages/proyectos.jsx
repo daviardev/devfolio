@@ -1,8 +1,8 @@
 import { Container, Heading, SimpleGrid } from '@chakra-ui/react'
 
-import Section from '../components/Section'
+import Section from '@/components/Section'
 
-import { WorkGridItem } from '../components/GridItem'
+import { WorkGridItem } from '@/components/GridItem'
 
 export default function Proyectos () {
   return (
