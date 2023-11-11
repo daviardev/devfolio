@@ -1,5 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 
+import { AnimatePresence } from 'framer-motion'
+
 import MainLayout from '@/components/Layout/MainLayout'
 
 import theme from '@/lib/theme'
@@ -10,10 +12,15 @@ export default function App ({ Component, pageProps, router }) {
     <ChakraProvider theme={theme}>
       <Font />
       <MainLayout router={router}>
-        <Component
-          key={router.route}
-          {...pageProps}
-        />
+        <AnimatePresence
+          initial
+          mode='wait'
+        >
+          <Component
+            key={router.route}
+            {...pageProps}
+          />
+        </AnimatePresence>
       </MainLayout>
     </ChakraProvider>
   )
