@@ -116,10 +116,10 @@ export default function Navbar (props) {
                 <MenuItem as={MenuLink} href='/'>
                   Inicio
                 </MenuItem>
-                <MenuItem as={MenuLink} href='/works'>
+                <MenuItem as={MenuLink} href='/proyectos'>
                   Proyectos
                 </MenuItem>
-                <MenuItem as={MenuLink} href='/posts'>
+                <MenuItem as={MenuLink} href='/recursos'>
                   Recursos
                 </MenuItem>
                 <MenuItem
