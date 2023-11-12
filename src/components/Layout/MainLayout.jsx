@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Box, Container } from '@chakra-ui/react'
 
 import Navbar from '../Navbar'
+import Footer from '../Footer'
 
 export default function MainLayout ({ children, router }) {
   return (
@@ -33,6 +34,7 @@ export default function MainLayout ({ children, router }) {
       >
         {children}
       </Container>
+      <Footer />
     </Box>
   )
 }
