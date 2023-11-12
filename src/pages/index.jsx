@@ -1,13 +1,14 @@
 import Link from 'next/link'
 
-import { Box, Heading, Container, Image, Button, useColorModeValue } from '@chakra-ui/react'
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { Box, Heading, Container, Image, Button, useColorModeValue, List, ListItem } from '@chakra-ui/react'
+import { ChevronRightIcon, EmailIcon } from '@chakra-ui/icons'
 
 import Section from '@/components/Section'
 import Paragraph from '@/components/Paragrahp'
 import ArticleLayout from '@/components/Layout/Article'
 
 import { BioSection, BioYear } from '@/components/Bio'
+import { IoLogoGithub } from 'react-icons/io5'
 
 export default function Home () {
   return (
@@ -129,6 +130,59 @@ export default function Home () {
             <Paragraph>
               Programación web, música, JS, ReactJS, Astro
             </Paragraph>
+          </Section>
+
+          <Section
+            delay={0.3}
+          >
+            <Heading
+              as='h3'
+              variant='section-title'
+            >
+              Puedes encontrarme
+            </Heading>
+            <List>
+              <ListItem>
+                <Link
+                  href='https://github.com/daviardev'
+                  target='_blank' rel='noreferrer'
+                >
+                  <Button
+                    variant='ghost'
+                    colorScheme='teal'
+                    leftIcon={<IoLogoGithub />}
+                  >
+                    lorem ipsum
+                  </Button>
+                </Link>
+              </ListItem>
+            </List>
+
+            <Heading
+              as='h3'
+              variant='section-title'
+            >
+              Colaboremos juntos
+            </Heading>
+
+            <Paragraph>
+              En caso que quieras que hagamos un proyecto o simplemente quieras saber mas de mi, contactame.
+            </Paragraph>
+
+            <Box
+              my={4}
+              align='center'
+            >
+              <Button
+                as={Link}
+                href='mailto:jerson.silva99@hotmail.com'
+                scroll={false}
+                leftIcon={<EmailIcon />}
+                colorScheme='teal'
+              >
+                Enviame un correo
+              </Button>
+            </Box>
           </Section>
         </Container>
       </ArticleLayout>
